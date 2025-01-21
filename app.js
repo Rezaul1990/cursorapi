@@ -9,6 +9,7 @@ const { PORT, MONGODB_URI } = require('./config/config');
 const authRoutes = require('./routes/authRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const productRoutes = require('./routes/productRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 const app = express();
 
@@ -29,6 +30,12 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/categories', categoryRoutes);
+
+// Test route
+app.get('/test', (req, res) => {
+    res.json({ message: 'Test route working' });
+});
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI)
